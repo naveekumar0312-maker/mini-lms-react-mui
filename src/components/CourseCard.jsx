@@ -8,7 +8,6 @@ import {
   Box,
   Chip
 } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
 
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
@@ -18,8 +17,8 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 export default function CourseCard({ course }) {
   const navigate = useNavigate();
 
-  const image =
-    course.image || "/courses/html-css.png"; // ✅ fallback safe
+  // 🔥 IMPORTANT: only thumbnail (no fallback, no imports)
+  const image = course.thumbnail;
 
   return (
     <Card
@@ -29,7 +28,7 @@ export default function CourseCard({ course }) {
         flexDirection: "column",
         borderRadius: "18px",
         overflow: "hidden",
-        transition: "0.4s ease",
+        transition: "0.35s ease",
         boxShadow: "0 12px 35px rgba(0,0,0,0.12)",
         "&:hover": {
           transform: "translateY(-10px)",
@@ -40,13 +39,15 @@ export default function CourseCard({ course }) {
       {/* ================= IMAGE ================= */}
       <Box sx={{ position: "relative" }}>
         <CardMedia
-  component="img"
-  height="180"
-  image={course.thumbnail}
-  alt={course.title}
-  sx={{ objectFit: "cover" }}
-/>
-
+          component="img"
+          height="180"
+          image={image}
+          alt={course.title}
+          sx={{
+            objectFit: "cover",
+            backgroundColor: "#f1f5f9" // image load aagum varai
+          }}
+        />
 
         {/* PREMIUM BADGE */}
         <Chip
@@ -85,7 +86,7 @@ export default function CourseCard({ course }) {
         <Stack direction="row" spacing={1}>
           <Chip
             icon={<MenuBookIcon />}
-            label={`${course.lessons?.length || 10}+ Lessons`}
+            label={`${course.lessons?.length || 5} Lessons`}
             size="small"
           />
           <Chip
