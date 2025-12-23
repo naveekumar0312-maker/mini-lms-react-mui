@@ -4,16 +4,15 @@ import {
   Typography,
   Button,
   Stack,
-  Box,
-  Chip
+  Box
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded";
-import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
 
 export default function CourseCard({ course }) {
@@ -23,35 +22,33 @@ export default function CourseCard({ course }) {
     <Card
       sx={{
         height: "100%",
-        borderRadius: "26px",
+        borderRadius: "28px",
         position: "relative",
         overflow: "hidden",
         background:
-          "linear-gradient(180deg,rgba(255,255,255,0.85),rgba(248,250,252,0.9))",
-        backdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.4)",
-        boxShadow:
-          "0 20px 60px rgba(79,70,229,0.18)",
+          "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(240,253,244,0.95))",
+        backdropFilter: "blur(18px)",
+        border: "1px solid rgba(34,197,94,0.25)",
+        boxShadow: "0 20px 60px rgba(34,197,94,0.25)",
         transition: "all 0.6s cubic-bezier(.4,0,.2,1)",
         "&:hover": {
-          transform: "translateY(-14px) scale(1.02)",
-          boxShadow:
-            "0 45px 120px rgba(79,70,229,0.45)"
+          transform: "translateY(-14px) scale(1.03)",
+          boxShadow: "0 45px 120px rgba(34,197,94,0.55)"
         }
       }}
     >
-      {/* ===== GLOW BACKGROUND ===== */}
+      {/* ===== GREEN GLOW ===== */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(circle at top right,rgba(99,102,241,0.25),transparent 60%)",
+            "radial-gradient(circle at top right, rgba(34,197,94,0.35), transparent 60%)",
           zIndex: 0
         }}
       />
 
-      {/* ===== PREMIUM RIBBON ===== */}
+      {/* ===== PREMIUM BADGE ===== */}
       <Box
         sx={{
           position: "absolute",
@@ -60,18 +57,18 @@ export default function CourseCard({ course }) {
           display: "flex",
           alignItems: "center",
           gap: 0.8,
-          px: 1.5,
-          py: 0.6,
+          px: 1.6,
+          py: 0.7,
           borderRadius: "999px",
-          bgcolor: "#0f172a",
-          color: "#fff",
+          bgcolor: "#052e16",
+          color: "#ecfdf5",
           fontSize: "0.72rem",
-          fontWeight: 700,
+          fontWeight: 800,
           zIndex: 2
         }}
       >
         <WorkspacePremiumRoundedIcon
-          sx={{ fontSize: 16, color: "#facc15" }}
+          sx={{ fontSize: 16, color: "#22c55e" }}
         />
         ULTRA PRO
       </Box>
@@ -85,7 +82,7 @@ export default function CourseCard({ course }) {
             mb: 1,
             lineHeight: 1.25,
             background:
-              "linear-gradient(90deg,#4f46e5,#22c55e)",
+              "linear-gradient(90deg,#16a34a,#22c55e)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent"
           }}
@@ -102,7 +99,7 @@ export default function CourseCard({ course }) {
         </Typography>
 
         {/* ===== FEATURES ===== */}
-        <Stack spacing={1.2}>
+        <Stack spacing={1.3}>
           <Feature
             icon={<MenuBookRoundedIcon />}
             text={`${course.lessons?.length || 12}+ Structured Lessons`}
@@ -119,26 +116,26 @@ export default function CourseCard({ course }) {
       </CardContent>
 
       {/* ===== ACTION ===== */}
-      <Box sx={{ p: 2.5 }}>
+      <Box sx={{ p: 2.8 }}>
         <Button
           fullWidth
           size="large"
           startIcon={<PlayArrowRoundedIcon />}
           sx={{
-            borderRadius: "18px",
-            py: 1.4,
-            fontWeight: 800,
+            borderRadius: "20px",
+            py: 1.5,
+            fontWeight: 900,
             letterSpacing: 0.4,
             textTransform: "none",
             background:
-              "linear-gradient(135deg,#4f46e5,#7c3aed)",
+              "linear-gradient(135deg,#16a34a,#22c55e)",
             boxShadow:
-              "0 18px 40px rgba(79,70,229,0.45)",
+              "0 18px 45px rgba(34,197,94,0.55)",
             "&:hover": {
               background:
-                "linear-gradient(135deg,#4338ca,#6d28d9)",
+                "linear-gradient(135deg,#15803d,#16a34a)",
               boxShadow:
-                "0 25px 60px rgba(79,70,229,0.6)"
+                "0 28px 70px rgba(34,197,94,0.75)"
             }
           }}
           onClick={() => navigate(`/course/${course.id}`)}
@@ -150,26 +147,26 @@ export default function CourseCard({ course }) {
   );
 }
 
-/* ===== MINI FEATURE ROW ===== */
+/* ===== FEATURE ROW ===== */
 function Feature({ icon, text }) {
   return (
-    <Stack direction="row" spacing={1.2} alignItems="center">
+    <Stack direction="row" spacing={1.3} alignItems="center">
       <Box
         sx={{
-          width: 34,
-          height: 34,
-          borderRadius: "10px",
+          width: 36,
+          height: 36,
+          borderRadius: "12px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           background:
-            "linear-gradient(135deg,#eef2ff,#ecfeff)",
-          color: "#4f46e5"
+            "linear-gradient(135deg,#dcfce7,#ecfdf5)",
+          color: "#16a34a"
         }}
       >
         {icon}
       </Box>
-      <Typography variant="body2" fontWeight={600}>
+      <Typography variant="body2" fontWeight={700}>
         {text}
       </Typography>
     </Stack>
