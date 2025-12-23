@@ -17,9 +17,6 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 export default function CourseCard({ course }) {
   const navigate = useNavigate();
 
-  // 🔥 IMPORTANT: only thumbnail (no fallback, no imports)
-  const image = course.thumbnail;
-
   return (
     <Card
       sx={{
@@ -28,28 +25,24 @@ export default function CourseCard({ course }) {
         flexDirection: "column",
         borderRadius: "18px",
         overflow: "hidden",
-        transition: "0.35s ease",
         boxShadow: "0 12px 35px rgba(0,0,0,0.12)",
+        transition: "0.3s",
         "&:hover": {
-          transform: "translateY(-10px)",
-          boxShadow: "0 25px 60px rgba(79,70,229,0.35)"
+          transform: "translateY(-6px)",
+          boxShadow: "0 20px 50px rgba(79,70,229,0.35)"
         }
       }}
     >
-      {/* ================= IMAGE ================= */}
+      {/* IMAGE */}
       <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"
           height="180"
-          image={image}
+          image={course.thumbnail}   // 🔥 ONLY THIS
           alt={course.title}
-          sx={{
-            objectFit: "cover",
-            backgroundColor: "#f1f5f9" // image load aagum varai
-          }}
+          sx={{ objectFit: "cover" }}
         />
 
-        {/* PREMIUM BADGE */}
         <Chip
           icon={<WorkspacePremiumIcon sx={{ color: "#facc15" }} />}
           label="Premium"
@@ -65,54 +58,36 @@ export default function CourseCard({ course }) {
         />
       </Box>
 
-      {/* ================= CONTENT ================= */}
+      {/* CONTENT */}
       <CardContent sx={{ flexGrow: 1 }}>
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          sx={{ mb: 1, lineHeight: 1.3 }}
-        >
+        <Typography variant="h6" fontWeight="bold">
           {course.title}
         </Typography>
 
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mb: 2 }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           {course.shortDesc}
         </Typography>
 
         <Stack direction="row" spacing={1}>
           <Chip
             icon={<MenuBookIcon />}
-            label={`${course.lessons?.length || 5} Lessons`}
+            label={`${course.lessons?.length || 0} Lessons`}
             size="small"
           />
-          <Chip
-            label="Certificate"
-            color="success"
-            size="small"
-          />
+          <Chip label="Certificate" color="success" size="small" />
         </Stack>
       </CardContent>
 
-      {/* ================= ACTION ================= */}
+      {/* ACTION */}
       <Box sx={{ p: 2 }}>
         <Button
           fullWidth
-          size="large"
-          startIcon={<PlayCircleFilledWhiteIcon />}
           variant="contained"
+          startIcon={<PlayCircleFilledWhiteIcon />}
           sx={{
             borderRadius: "14px",
             fontWeight: "bold",
-            background:
-              "linear-gradient(135deg,#4f46e5,#7c3aed)",
-            "&:hover": {
-              background:
-                "linear-gradient(135deg,#4338ca,#6d28d9)"
-            }
+            background: "linear-gradient(135deg,#4f46e5,#7c3aed)"
           }}
           onClick={() => navigate(`/course/${course.id}`)}
         >
