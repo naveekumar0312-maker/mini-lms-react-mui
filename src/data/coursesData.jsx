@@ -1,24 +1,4 @@
 /* ================= COURSE IMAGES ================= */
-import htmlCss from "../assets/courses/html-css.png";
-import javascript from "../assets/courses/javascript.png";
-import react from "../assets/courses/react.png";
-import mui from "../assets/courses/mui.png";
-import node from "../assets/courses/node.png";
-import mongodb from "../assets/courses/mongodb.png";
-import mern from "../assets/courses/mern.png";
-import git from "../assets/courses/git.png";
-import typescript from "../assets/courses/typescript.png";
-import redux from "../assets/courses/redux.png";
-import nextjs from "../assets/courses/nextjs.png";
-import api from "../assets/courses/api.png";
-import express from "../assets/courses/express.png";
-import security from "../assets/courses/security.png";
-import uiux from "../assets/courses/uiux.png";
-import performance from "../assets/courses/performance.png";
-import testing from "../assets/courses/testing.png";
-import systemDesign from "../assets/courses/system-design.png";
-import deploy from "../assets/courses/deploy.png";
-import career from "../assets/courses/career.png";
 
 /* ================= COMMON GENERATORS ================= */
 
@@ -52,7 +32,7 @@ const coursesData = [
   {
     id: 101,
     title: "HTML & CSS Mastery",
-    image: htmlCss,
+    image: "/courses/html-css.png",
     shortDesc: "Build real-world websites using HTML & CSS.",
     description: "Responsive and modern web design.",
     longContent: generateCourseContent("HTML & CSS Mastery"),
@@ -78,7 +58,7 @@ const coursesData = [
   {
     id: 102,
     title: "JavaScript Zero to Advanced",
-    image: javascript,
+    image: "/courses/javascript.png",
     shortDesc: "Master JavaScript from basics to advanced.",
     description: "ES6+, DOM, async programming.",
     longContent: generateCourseContent("JavaScript"),
@@ -103,7 +83,7 @@ const coursesData = [
   {
     id: 103,
     title: "React Pro Bootcamp",
-    image: react,
+    image: "/courses/react.png",
     shortDesc: "Build scalable React applications.",
     description: "Hooks, routing, architecture.",
     longContent: generateCourseContent("React"),
@@ -128,7 +108,7 @@ const coursesData = [
   {
     id: 104,
     title: "Material UI Complete Guide",
-    image: mui,
+    image: "/courses/mui.png",
     shortDesc: "Design premium UI with MUI.",
     description: "Modern UI components.",
     longContent: generateCourseContent("Material UI"),
@@ -151,7 +131,7 @@ const coursesData = [
   {
     id: 105,
     title: "Node.js Backend Development",
-    image: node,
+    image: "/courses/node.png",
     shortDesc: "Backend development with Node.js.",
     description: "APIs and server logic.",
     longContent: generateCourseContent("Node.js"),
@@ -174,7 +154,7 @@ const coursesData = [
   {
     id: 106,
     title: "MongoDB & NoSQL",
-    image: mongodb,
+    image: "/courses/mongodb.png",
     shortDesc: "NoSQL database mastery.",
     description: "CRUD and schema design.",
     longContent: generateCourseContent("MongoDB"),
@@ -198,7 +178,7 @@ const coursesData = [
   {
     id: 107,
     title: "MERN Stack Development",
-    image: mern,
+    image: "/courses/mern.png",
     shortDesc: "Full stack MERN apps.",
     description: "Frontend + Backend integration.",
     longContent: generateCourseContent("MERN Stack"),
@@ -217,7 +197,7 @@ const coursesData = [
   {
     id: 108,
     title: "Git & GitHub Essentials",
-    image: git,
+    image: "/courses/git.png",
     shortDesc: "Version control mastery.",
     description: "Collaboration tools.",
     longContent: generateCourseContent("Git & GitHub"),
@@ -235,7 +215,7 @@ const coursesData = [
   {
     id: 109,
     title: "TypeScript for React",
-    image: typescript,
+    image: "/courses/typescript.png",
     shortDesc: "Type-safe React apps.",
     description: "TypeScript integration.",
     longContent: generateCourseContent("TypeScript"),
@@ -252,7 +232,7 @@ const coursesData = [
   {
     id: 110,
     title: "Redux Toolkit Mastery",
-    image: redux,
+    image: "/courses/redux.png",
     shortDesc: "Global state management.",
     description: "Redux Toolkit patterns.",
     longContent: generateCourseContent("Redux Toolkit"),
@@ -269,7 +249,7 @@ const coursesData = [
   {
     id: 111,
     title: "Next.js Fundamentals",
-    image: nextjs,
+    image: "/courses/nextjs.png",
     shortDesc: "Production React apps.",
     description: "SSR & routing.",
     longContent: generateCourseContent("Next.js"),
@@ -286,7 +266,7 @@ const coursesData = [
   {
     id: 112,
     title: "REST API Design",
-    image: api,
+    image: "/courses/api.png",
     shortDesc: "Scalable APIs.",
     description: "REST principles.",
     longContent: generateCourseContent("REST API"),
@@ -303,7 +283,7 @@ const coursesData = [
   {
     id: 113,
     title: "Express.js Deep Dive",
-    image: express,
+    image: "/courses/express.png",
     shortDesc: "Backend framework.",
     description: "Middleware & routing.",
     longContent: generateCourseContent("Express.js"),
@@ -320,7 +300,7 @@ const coursesData = [
   {
     id: 114,
     title: "Authentication & Security",
-    image: security,
+    image: "/courses/security.png",
     shortDesc: "Secure apps.",
     description: "JWT & roles.",
     longContent: generateCourseContent("Security"),
@@ -337,7 +317,7 @@ const coursesData = [
   {
     id: 115,
     title: "UI/UX Design Basics",
-    image: uiux,
+    image: "/courses/uiux.png",
     shortDesc: "User experience design.",
     description: "Design principles.",
     longContent: generateCourseContent("UI/UX"),
@@ -354,7 +334,7 @@ const coursesData = [
   {
     id: 116,
     title: "Frontend Performance",
-    image: performance,
+    image: "/courses/performance.png",
     shortDesc: "Speed optimization.",
     description: "Performance best practices.",
     longContent: generateCourseContent("Performance"),
@@ -371,7 +351,7 @@ const coursesData = [
   {
     id: 117,
     title: "Testing React Apps",
-    image: testing,
+    image: "/courses/testing.png",
     shortDesc: "Reliable tests.",
     description: "Jest & RTL.",
     longContent: generateCourseContent("Testing"),
@@ -388,7 +368,7 @@ const coursesData = [
   {
     id: 118,
     title: "System Design Basics",
-    image: systemDesign,
+    image: "/courses/system-design.png",
     shortDesc: "Scalable systems.",
     description: "Architecture basics.",
     longContent: generateCourseContent("System Design"),
@@ -405,7 +385,7 @@ const coursesData = [
   {
     id: 119,
     title: "Web Deployment",
-    image: deploy,
+    image: "/courses/deploy.png",
     shortDesc: "Deploy apps.",
     description: "Production hosting.",
     longContent: generateCourseContent("Deployment"),
@@ -422,7 +402,7 @@ const coursesData = [
   {
     id: 120,
     title: "Developer Career Roadmap",
-    image: career,
+    image: "/courses/career.png",
     shortDesc: "Career growth.",
     description: "Interview & skills.",
     longContent: generateCourseContent("Career"),
