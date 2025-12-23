@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://naveekumar0312-maker.github.io/mini-lms-react-mui",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
