@@ -39,24 +39,26 @@ export default function Navbar() {
 
   const menuOpen = Boolean(anchorEl);
 
-  /* Premium pill style */
+  /* 💎 DIAMOND PILL */
   const pillStyle = {
     display: "flex",
     alignItems: "center",
     gap: 0.6,
-    px: 2.2,
-    py: 0.9,
+    px: 2.4,
+    py: 1,
     borderRadius: "999px",
     cursor: "pointer",
-    background: "rgba(255,255,255,0.1)",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.2)",
+    background:
+      "linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06))",
+    backdropFilter: "blur(16px)",
+    border: "1px solid rgba(255,255,255,0.28)",
     color: "#fff",
-    fontWeight: 500,
-    transition: "all 0.3s ease",
+    fontWeight: 600,
+    letterSpacing: 0.3,
+    transition: "all .35s ease",
     "&:hover": {
-      transform: "translateY(-2px)",
-      boxShadow: "0 12px 30px rgba(79,70,229,0.35)"
+      transform: "translateY(-3px)",
+      boxShadow: "0 18px 45px rgba(124,58,237,.55)"
     }
   };
 
@@ -68,25 +70,56 @@ export default function Navbar() {
         elevation={0}
         sx={{
           background:
-            "linear-gradient(135deg, rgba(79,70,229,0.95), rgba(124,58,237,0.95))",
-          backdropFilter: "blur(14px)"
+            "linear-gradient(135deg, rgba(2,6,23,.96), rgba(79,70,229,.92), rgba(124,58,237,.92))",
+          backdropFilter: "blur(18px)",
+          borderBottom: "1px solid rgba(255,255,255,.12)"
         }}
       >
         <Toolbar
           sx={{
-            maxWidth: 1300,
+            maxWidth: 1320,
             mx: "auto",
             width: "100%",
+            py: 1,
             justifyContent: "space-between"
           }}
         >
           {/* LOGO */}
           <Box
-            sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1.2,
+              cursor: "pointer"
+            }}
             onClick={() => navigate(user ? "/home" : "/login")}
           >
-            <SchoolIcon sx={{ color: "#fff" }} />
-            <Typography fontWeight="bold" color="#fff">
+            <Box
+              sx={{
+                width: 38,
+                height: 38,
+                borderRadius: "12px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background:
+                  "linear-gradient(135deg,#4f46e5,#22c55e)",
+                boxShadow: "0 0 22px rgba(79,70,229,.6)"
+              }}
+            >
+              <SchoolIcon sx={{ color: "#fff" }} />
+            </Box>
+
+            <Typography
+              fontWeight={900}
+              sx={{
+                letterSpacing: 1,
+                background:
+                  "linear-gradient(90deg,#a5b4fc,#22c55e)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
               MINI LMS
             </Typography>
           </Box>
@@ -96,11 +129,15 @@ export default function Navbar() {
             {user && (
               <>
                 <NavLink to="/home" style={{ textDecoration: "none" }}>
-                  <Box sx={pillStyle}><HomeIcon fontSize="small" /> Home</Box>
+                  <Box sx={pillStyle}>
+                    <HomeIcon fontSize="small" /> Home
+                  </Box>
                 </NavLink>
 
                 <NavLink to="/about" style={{ textDecoration: "none" }}>
-                  <Box sx={pillStyle}><InfoIcon fontSize="small" /> About</Box>
+                  <Box sx={pillStyle}>
+                    <InfoIcon fontSize="small" /> About
+                  </Box>
                 </NavLink>
 
                 {user.role === "admin" && (
@@ -118,7 +155,12 @@ export default function Navbar() {
                 <Button
                   startIcon={<LoginIcon />}
                   variant="outlined"
-                  sx={{ color: "#fff" }}
+                  sx={{
+                    color: "#fff",
+                    borderColor: "rgba(255,255,255,.35)",
+                    borderRadius: "999px",
+                    px: 3
+                  }}
                   onClick={() => navigate("/login")}
                 >
                   Login
@@ -126,8 +168,15 @@ export default function Navbar() {
 
                 <Button
                   startIcon={<PersonAddIcon />}
-                  variant="contained"
-                  sx={{ background: "linear-gradient(135deg,#22c55e,#16a34a)" }}
+                  sx={{
+                    borderRadius: "999px",
+                    px: 3,
+                    fontWeight: 700,
+                    background:
+                      "linear-gradient(135deg,#22c55e,#16a34a)",
+                    boxShadow:
+                      "0 14px 40px rgba(34,197,94,.65)"
+                  }}
                   onClick={() => navigate("/register")}
                 >
                   Signup
@@ -135,8 +184,11 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                {/* USERNAME (DESKTOP) */}
-                <Box sx={pillStyle} onClick={(e) => setAnchorEl(e.currentTarget)}>
+                {/* USER MENU */}
+                <Box
+                  sx={pillStyle}
+                  onClick={(e) => setAnchorEl(e.currentTarget)}
+                >
                   Hi {user.username}
                 </Box>
 
@@ -144,6 +196,16 @@ export default function Navbar() {
                   anchorEl={anchorEl}
                   open={menuOpen}
                   onClose={() => setAnchorEl(null)}
+                  PaperProps={{
+                    sx: {
+                      borderRadius: 4,
+                      mt: 1,
+                      background:
+                        "linear-gradient(180deg,#020617,#1e1b4b)",
+                      color: "#fff",
+                      border: "1px solid rgba(255,255,255,.15)"
+                    }
+                  }}
                 >
                   <MenuItem
                     onClick={() => {
@@ -155,14 +217,14 @@ export default function Navbar() {
                     Profile
                   </MenuItem>
 
-                  <Divider />
+                  <Divider sx={{ borderColor: "rgba(255,255,255,.2)" }} />
 
                   <MenuItem
                     onClick={() => {
                       logout();
                       setAnchorEl(null);
                     }}
-                    sx={{ color: "error.main" }}
+                    sx={{ color: "#fca5a5" }}
                   >
                     <LogoutIcon sx={{ mr: 1 }} />
                     Logout
@@ -186,9 +248,10 @@ export default function Navbar() {
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <Box
           sx={{
-            width: 260,
+            width: 280,
             height: "100%",
-            background: "linear-gradient(180deg,#4f46e5,#7c3aed)",
+            background:
+              "linear-gradient(180deg,#020617,#4f46e5,#7c3aed)",
             color: "#fff"
           }}
         >
@@ -200,21 +263,31 @@ export default function Navbar() {
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
-                background: "rgba(255,255,255,0.15)"
+                background: "rgba(255,255,255,.12)",
+                cursor: "pointer"
               }}
               onClick={() => {
                 navigate("/profile");
                 setOpen(false);
               }}
             >
-              <Avatar sx={{ bgcolor: "#fff", color: "#4f46e5" }}>
+              <Avatar
+                sx={{
+                  bgcolor: "#fff",
+                  color: "#4f46e5",
+                  fontWeight: 700
+                }}
+              >
                 {user.username[0].toUpperCase()}
               </Avatar>
               <Box>
-                <Typography fontWeight={600}>
+                <Typography fontWeight={700}>
                   {user.username}
                 </Typography>
-                <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ opacity: 0.85 }}
+                >
                   View Profile
                 </Typography>
               </Box>
@@ -225,21 +298,35 @@ export default function Navbar() {
             {user && (
               <>
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => { navigate("/home"); setOpen(false); }}>
+                  <ListItemButton
+                    onClick={() => {
+                      navigate("/home");
+                      setOpen(false);
+                    }}
+                  >
                     <HomeIcon sx={{ mr: 1 }} />
                     <ListItemText primary="Home" />
                   </ListItemButton>
                 </ListItem>
 
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => { navigate("/about"); setOpen(false); }}>
+                  <ListItemButton
+                    onClick={() => {
+                      navigate("/about");
+                      setOpen(false);
+                    }}
+                  >
                     <InfoIcon sx={{ mr: 1 }} />
                     <ListItemText primary="About" />
                   </ListItemButton>
                 </ListItem>
 
-                {/* 🔥 MOBILE LOGOUT (FIXED) */}
-                <Divider sx={{ my: 1, borderColor: "rgba(255,255,255,0.3)" }} />
+                <Divider
+                  sx={{
+                    my: 1,
+                    borderColor: "rgba(255,255,255,.3)"
+                  }}
+                />
 
                 <ListItem disablePadding>
                   <ListItemButton
@@ -247,7 +334,7 @@ export default function Navbar() {
                       logout();
                       setOpen(false);
                     }}
-                    sx={{ color: "#ffdada" }}
+                    sx={{ color: "#fecaca" }}
                   >
                     <LogoutIcon sx={{ mr: 1 }} />
                     <ListItemText primary="Logout" />

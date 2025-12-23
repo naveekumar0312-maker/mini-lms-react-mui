@@ -77,72 +77,129 @@ export default function Profile() {
   };
 
   /* ================= PASSWORD ================= */
-   
   const handleChangePassword = () => {
-  setMessage("");
-  setError("");
+    setMessage("");
+    setError("");
 
-  const savedUser =
-    user.role === "admin"
-      ? JSON.parse(localStorage.getItem("adminUser"))
-      : JSON.parse(localStorage.getItem("registeredUser"));
+    const savedUser =
+      user.role === "admin"
+        ? JSON.parse(localStorage.getItem("adminUser"))
+        : JSON.parse(localStorage.getItem("registeredUser"));
 
-  if (passwords.current !== savedUser.password) {
-    setError("❌ Current password incorrect");
-    return;
-  }
+    if (passwords.current !== savedUser.password) {
+      setError("❌ Current password incorrect");
+      return;
+    }
 
-  if (passwords.newPass.length < 6) {
-    setError("❌ Password must be at least 6 characters");
-    return;
-  }
+    if (passwords.newPass.length < 6) {
+      setError("❌ Password must be at least 6 characters");
+      return;
+    }
 
-  if (passwords.newPass !== passwords.confirm) {
-    setError("❌ Passwords do not match");
-    return;
-  }
+    if (passwords.newPass !== passwords.confirm) {
+      setError("❌ Passwords do not match");
+      return;
+    }
 
-  const updatedUser = {
-    ...savedUser,
-    password: passwords.newPass
+    const updatedUser = {
+      ...savedUser,
+      password: passwords.newPass
+    };
+
+    if (user.role === "admin") {
+      localStorage.setItem("adminUser", JSON.stringify(updatedUser));
+    } else {
+      localStorage.setItem("registeredUser", JSON.stringify(updatedUser));
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+
+    setPasswords({ current: "", newPass: "", confirm: "" });
+    setMessage("🔐 Password updated successfully. Please login again.");
   };
 
-  if (user.role === "admin") {
-    localStorage.setItem("adminUser", JSON.stringify(updatedUser));
-  } else {
-    localStorage.setItem("registeredUser", JSON.stringify(updatedUser));
-  }
-
-  localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-  setUser(updatedUser);
-
-  setPasswords({ current: "", newPass: "", confirm: "" });
-  setMessage("🔐 Password updated successfully. Please login again.");
-};
-
-
   return (
-    <Container maxWidth="md" sx={{ mt: 8, mb: 12 }}>
+    <Container maxWidth="md" sx={{ mt: 8, mb: 14 }}>
       {/* ================= HEADER ================= */}
       <Paper
+  sx={{
+    p: 0,
+    mb: 6,
+    borderRadius: 6,
+    overflow: "hidden",
+    color: "#fff",
+    boxShadow: "0 40px 120px rgba(79,70,229,.6)"
+  }}
+>
+  {/* ===== BANNER ===== */}
+  <Box
+    sx={{
+      height: 180,
+      position: "relative",
+      backgroundImage:
+        "url(https://images.unsplash.com/photo-1557683316-973673baf926)",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }}
+  >
+    {/* gradient overlay – SAME COLORS */}
+    <Box
+      sx={{
+        position: "absolute",
+        inset: 0,
+        background:
+          "linear-gradient(135deg,#020617,#4f46e5,#22c55e)",
+        opacity: 0.85
+      }}
+    />
+
+    {/* PROFILE AVATAR */}
+    <Box
+      sx={{
+        position: "absolute",
+        bottom: -45,
+        left: 40
+      }}
+    >
+      <Avatar
+        src={profile.image || undefined}
         sx={{
-          p: 5,
-          borderRadius: 5,
-          background:
-            "linear-gradient(135deg,#6366f1,#9333ea)",
-          color: "#fff",
-          mb: 5
+          width: 90,
+          height: 90,
+          fontSize: 34,
+          bgcolor: "#6366f1",
+          border: "4px solid #fff",
+          boxShadow: "0 15px 40px rgba(0,0,0,.35)"
         }}
       >
-        <Typography variant="h4" fontWeight="bold">
-          My Profile
-        </Typography>
-        <Typography sx={{ opacity: 0.9 }}>
-          Logged in as <b>{user.username}</b>
-        </Typography>
-      </Paper>
+        {!profile.image &&
+          user.username.charAt(0).toUpperCase()}
+      </Avatar>
+    </Box>
+  </Box>
 
-      
+  {/* ===== TEXT CONTENT ===== */}
+  <Box sx={{ pt: 7, pb: 4, px: 5 }}>
+    <Typography
+      variant="h4"
+      fontWeight={900}
+      sx={{
+        background:
+          "linear-gradient(90deg,#a5b4fc,#22c55e)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent"
+      }}
+    >
+      {profile.name || user.username}
+    </Typography>
+
+    <Typography sx={{ opacity: 0.9 }}>
+      @{user.username} • Profile Dashboard
+    </Typography>
+  </Box>
+</Paper>
+
 
       {message && (
         <Alert severity="success" sx={{ mb: 3 }}>
@@ -156,25 +213,19 @@ export default function Profile() {
       )}
 
       {/* ================= PROFILE CARD ================= */}
-      <Paper
-        sx={{
-          p: 5,
-          borderRadius: 5,
-          backdropFilter: "blur(10px)",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-        }}
-      >
+      <Paper sx={glassCard}>
         <Grid container spacing={5} alignItems="center">
           <Grid xs={12} md={4} textAlign="center">
             <Box sx={{ position: "relative", display: "inline-block" }}>
               <Avatar
                 src={profile.image}
                 sx={{
-                  width: 150,
-                  height: 150,
-                  fontSize: 48,
-                  bgcolor: "#6366f1",
-                  boxShadow: "0 10px 30px rgba(0,0,0,.25)"
+                  width: 160,
+                  height: 160,
+                  fontSize: 52,
+                  background:
+                    "linear-gradient(135deg,#4f46e5,#22c55e)",
+                  boxShadow: "0 20px 50px rgba(79,70,229,.6)"
                 }}
               >
                 {!profile.image &&
@@ -185,11 +236,12 @@ export default function Profile() {
                 component="label"
                 sx={{
                   position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  bgcolor: "#6366f1",
-                  color: "#fff",
-                  "&:hover": { bgcolor: "#4f46e5" }
+                  bottom: 6,
+                  right: 6,
+                  bgcolor: "#020617",
+                  color: "#22c55e",
+                  boxShadow: "0 10px 25px rgba(0,0,0,.4)",
+                  "&:hover": { bgcolor: "#020617" }
                 }}
               >
                 <PhotoCameraIcon />
@@ -240,7 +292,7 @@ export default function Profile() {
               {!edit ? (
                 <Button
                   startIcon={<EditIcon />}
-                  variant="contained"
+                  sx={primaryBtn}
                   size="large"
                   onClick={() => setEdit(true)}
                 >
@@ -249,8 +301,7 @@ export default function Profile() {
               ) : (
                 <Button
                   startIcon={<SaveIcon />}
-                  variant="contained"
-                  color="success"
+                  sx={successBtn}
                   size="large"
                   onClick={handleSaveProfile}
                 >
@@ -263,15 +314,8 @@ export default function Profile() {
       </Paper>
 
       {/* ================= PASSWORD ================= */}
-      <Paper
-        sx={{
-          mt: 7,
-          p: 5,
-          borderRadius: 5,
-          boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-        }}
-      >
-        <Typography variant="h6" fontWeight="bold">
+      <Paper sx={{ ...glassCard, mt: 7 }}>
+        <Typography variant="h6" fontWeight={900}>
           <LockIcon sx={{ mr: 1 }} />
           Change Password
         </Typography>
@@ -318,8 +362,7 @@ export default function Profile() {
 
         <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
           <Button
-            variant="contained"
-            color="error"
+            sx={dangerBtn}
             size="large"
             onClick={handleChangePassword}
           >
@@ -341,3 +384,42 @@ export default function Profile() {
     </Container>
   );
 }
+
+/* ================= STYLES ================= */
+
+const glassCard = {
+  p: 5,
+  borderRadius: 6,
+  background:
+    "linear-gradient(135deg,rgba(255,255,255,.95),rgba(238,242,255,.85))",
+  backdropFilter: "blur(18px)",
+  boxShadow: "0 30px 90px rgba(79,70,229,.25)"
+};
+
+const primaryBtn = {
+  borderRadius: "999px",
+  px: 4,
+  py: 1.2,
+  fontWeight: 800,
+  background:
+    "linear-gradient(135deg,#4f46e5,#22c55e)",
+  boxShadow:
+    "0 18px 45px rgba(79,70,229,.55)"
+};
+
+const successBtn = {
+  ...primaryBtn,
+  background:
+    "linear-gradient(135deg,#16a34a,#22c55e)"
+};
+
+const dangerBtn = {
+  borderRadius: "999px",
+  px: 4,
+  py: 1.2,
+  fontWeight: 800,
+  background:
+    "linear-gradient(135deg,#ef4444,#dc2626)",
+  boxShadow:
+    "0 18px 45px rgba(239,68,68,.45)"
+};

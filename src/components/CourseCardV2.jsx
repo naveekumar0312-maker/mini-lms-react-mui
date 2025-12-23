@@ -22,69 +22,69 @@ export default function CourseCard({ course }) {
     <Card
       sx={{
         height: "100%",
-        borderRadius: "28px",
+        borderRadius: "26px",
         position: "relative",
         overflow: "hidden",
         background:
-          "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(240,253,244,0.95))",
-        backdropFilter: "blur(18px)",
-        border: "1px solid rgba(34,197,94,0.25)",
-        boxShadow: "0 20px 60px rgba(34,197,94,0.25)",
-        transition: "all 0.6s cubic-bezier(.4,0,.2,1)",
+          "linear-gradient(180deg, #020617, #022c22)",
+        border: "1px solid rgba(34,197,94,0.35)",
+        boxShadow:
+          "0 40px 120px rgba(0,0,0,0.85)",
+        transition: "all .55s ease",
         "&:hover": {
-          transform: "translateY(-14px) scale(1.03)",
-          boxShadow: "0 45px 120px rgba(34,197,94,0.55)"
+          transform: "translateY(-18px)",
+          boxShadow:
+            "0 60px 160px rgba(34,197,94,.45)"
         }
       }}
     >
-      {/* ===== GREEN GLOW ===== */}
+      {/* NEON EDGE */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
+          borderRadius: "26px",
           background:
-            "radial-gradient(circle at top right, rgba(34,197,94,0.35), transparent 60%)",
-          zIndex: 0
+            "linear-gradient(120deg, transparent 30%, rgba(34,197,94,.25), transparent 70%)",
+          opacity: 0,
+          transition: ".6s",
+          "&:hover": { opacity: 1 }
         }}
       />
 
-      {/* ===== PREMIUM BADGE ===== */}
+      {/* PREMIUM TAG */}
       <Box
         sx={{
           position: "absolute",
-          top: 18,
-          left: 18,
-          display: "flex",
-          alignItems: "center",
-          gap: 0.8,
-          px: 1.6,
+          top: 16,
+          right: 16,
+          px: 1.8,
           py: 0.7,
           borderRadius: "999px",
           bgcolor: "#052e16",
-          color: "#ecfdf5",
-          fontSize: "0.72rem",
-          fontWeight: 800,
-          zIndex: 2
+          color: "#22c55e",
+          fontSize: "0.7rem",
+          fontWeight: 900,
+          letterSpacing: 0.8,
+          display: "flex",
+          alignItems: "center",
+          gap: 0.7,
+          boxShadow:
+            "0 0 25px rgba(34,197,94,.6)"
         }}
       >
-        <WorkspacePremiumRoundedIcon
-          sx={{ fontSize: 16, color: "#22c55e" }}
-        />
-        ULTRA PRO
+        <WorkspacePremiumRoundedIcon sx={{ fontSize: 15 }} />
+        PREMIUM
       </Box>
 
-      {/* ===== CONTENT ===== */}
-      <CardContent sx={{ position: "relative", zIndex: 1, pt: 6 }}>
+      <CardContent sx={{ pt: 6, pb: 4 }}>
         <Typography
           variant="h6"
-          fontWeight={900}
           sx={{
+            fontWeight: 900,
             mb: 1,
-            lineHeight: 1.25,
-            background:
-              "linear-gradient(90deg,#16a34a,#22c55e)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent"
+            color: "#ecfdf5",
+            letterSpacing: .4
           }}
         >
           {course.title}
@@ -92,81 +92,86 @@ export default function CourseCard({ course }) {
 
         <Typography
           variant="body2"
-          color="text.secondary"
-          sx={{ mb: 3 }}
+          sx={{
+            mb: 3,
+            color: "#a7f3d0",
+            opacity: .85
+          }}
         >
           {course.shortDesc}
         </Typography>
 
-        {/* ===== FEATURES ===== */}
         <Stack spacing={1.3}>
           <Feature
             icon={<MenuBookRoundedIcon />}
-            text={`${course.lessons?.length || 12}+ Structured Lessons`}
+            text={`${course.lessons?.length || 12}+ Lessons`}
           />
           <Feature
             icon={<AutoGraphRoundedIcon />}
-            text="Beginner → Advanced Roadmap"
+            text="Step-by-step Growth"
           />
           <Feature
             icon={<VerifiedRoundedIcon />}
-            text="Verified Certificate Included"
+            text="Industry Certificate"
           />
         </Stack>
       </CardContent>
 
-      {/* ===== ACTION ===== */}
-      <Box sx={{ p: 2.8 }}>
+      {/* CTA */}
+      <Box sx={{ px: 3, pb: 3 }}>
         <Button
           fullWidth
-          size="large"
           startIcon={<PlayArrowRoundedIcon />}
           sx={{
-            borderRadius: "20px",
-            py: 1.5,
+            borderRadius: "18px",
+            py: 1.4,
             fontWeight: 900,
-            letterSpacing: 0.4,
             textTransform: "none",
+            color: "#052e16",
             background:
-              "linear-gradient(135deg,#16a34a,#22c55e)",
+              "linear-gradient(135deg,#22c55e,#4ade80)",
             boxShadow:
-              "0 18px 45px rgba(34,197,94,0.55)",
+              "0 18px 60px rgba(34,197,94,.75)",
             "&:hover": {
               background:
-                "linear-gradient(135deg,#15803d,#16a34a)",
+                "linear-gradient(135deg,#16a34a,#22c55e)",
               boxShadow:
-                "0 28px 70px rgba(34,197,94,0.75)"
+                "0 30px 90px rgba(34,197,94,.9)"
             }
           }}
           onClick={() => navigate(`/course/${course.id}`)}
         >
-          Start Learning
+          Start Course
         </Button>
       </Box>
     </Card>
   );
 }
 
-/* ===== FEATURE ROW ===== */
+/* FEATURE */
 function Feature({ icon, text }) {
   return (
-    <Stack direction="row" spacing={1.3} alignItems="center">
+    <Stack direction="row" spacing={1.2} alignItems="center">
       <Box
         sx={{
-          width: 36,
-          height: 36,
-          borderRadius: "12px",
+          width: 34,
+          height: 34,
+          borderRadius: "10px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "linear-gradient(135deg,#dcfce7,#ecfdf5)",
-          color: "#16a34a"
+          bgcolor: "rgba(34,197,94,.15)",
+          color: "#22c55e",
+          boxShadow:
+            "0 0 18px rgba(34,197,94,.6)"
         }}
       >
         {icon}
       </Box>
-      <Typography variant="body2" fontWeight={700}>
+      <Typography
+        variant="body2"
+        sx={{ color: "#d1fae5", fontWeight: 700 }}
+      >
         {text}
       </Typography>
     </Stack>

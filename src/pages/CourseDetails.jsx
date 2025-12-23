@@ -34,7 +34,7 @@ export default function CourseDetails() {
   if (!course) return null;
 
   /* ================= STATES ================= */
-  const [step, setStep] = useState("details"); // details | quiz | result | certificate
+  const [step, setStep] = useState("details");
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(120);
@@ -43,12 +43,10 @@ export default function CourseDetails() {
   /* ================= TIMER ================= */
   useEffect(() => {
     if (step !== "quiz") return;
-
     if (timeLeft === 0) {
       submitQuiz();
       return;
     }
-
     const t = setTimeout(() => setTimeLeft(p => p - 1), 1000);
     return () => clearTimeout(t);
   }, [timeLeft, step]);
@@ -97,7 +95,6 @@ export default function CourseDetails() {
   /* ================= CERTIFICATE ================= */
   const downloadCertificate = () => {
     const date = new Date().toLocaleDateString();
-
     const history =
       JSON.parse(localStorage.getItem("certificates")) || [];
     history.push({ name, course: course.title, date });
@@ -110,9 +107,19 @@ export default function CourseDetails() {
           <title>Certificate</title>
           <style>
             body { font-family: Arial; padding:40px; text-align:center; }
-            .cert { border:8px solid #4f46e5; padding:40px; }
+            .cert {
+              border:10px solid transparent;
+              border-image: linear-gradient(135deg,#4f46e5,#22c55e) 1;
+              padding:40px;
+            }
             h1 { color:#4f46e5 }
-            .logo { font-size:28px; font-weight:bold; color:#22c55e }
+            .logo {
+              font-size:30px;
+              font-weight:bold;
+              background:linear-gradient(90deg,#4f46e5,#22c55e);
+              -webkit-background-clip:text;
+              -webkit-text-fill-color:transparent;
+            }
           </style>
         </head>
         <body>
@@ -133,17 +140,30 @@ export default function CourseDetails() {
   };
 
   return (
-    <Container sx={{ mt: 8, mb: 12 }}>
+    <Container sx={{ mt: 8, mb: 14 }}>
 
       {/* ================= TITLE ================= */}
-      <Paper sx={{
-        p: 6,
-        borderRadius: 6,
-        mb: 7,
-        background: "linear-gradient(135deg,#4f46e5,#7c3aed)",
-        color: "#fff"
-      }}>
-        <Typography variant="h4" fontWeight={800}>
+      <Paper
+        sx={{
+          p: 6,
+          borderRadius: 6,
+          mb: 7,
+          background:
+            "linear-gradient(135deg,#020617,#4f46e5,#22c55e)",
+          color: "#fff",
+          boxShadow: "0 40px 120px rgba(79,70,229,.6)"
+        }}
+      >
+        <Typography
+          variant="h4"
+          fontWeight={900}
+          sx={{
+            background:
+              "linear-gradient(90deg,#a5b4fc,#22c55e)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent"
+          }}
+        >
           {course.title}
         </Typography>
         <Typography sx={{ opacity: 0.95, mt: 1 }}>
@@ -154,7 +174,9 @@ export default function CourseDetails() {
       {/* ================= DETAILS ================= */}
       {step === "details" && (
         <>
-          <Section icon={<MenuBookIcon />} title="Course Overview"
+          <Section
+            icon={<MenuBookIcon />}
+            title="Course Overview"
             content={[
               "Industry aligned curriculum with real-world focus.",
               "Hands-on exercises and mini project included.",
@@ -164,22 +186,26 @@ export default function CourseDetails() {
             ]}
           />
 
-          <Paper sx={{ p: 5, borderRadius: 5, mb: 6 }}>
+          <Paper sx={premiumPaper}>
             <SectionTitle icon={<MenuBookIcon />} title="Lessons" />
             <Grid container spacing={3}>
               {course.lessons.map((l, i) => (
                 <Grid key={i} xs={12} md={6}>
-                  <Paper sx={{
-                    p: 3,
-                    borderRadius: 3,
-                    border: "1px solid #e5e7eb",
-                    transition: "0.3s",
-                    "&:hover": {
-                      transform: "translateY(-6px)",
-                      boxShadow: "0 20px 40px rgba(79,70,229,0.25)"
-                    }
-                  }}>
-                    <Typography fontWeight="bold">{l.title}</Typography>
+                  <Paper
+                    sx={{
+                      p: 3,
+                      borderRadius: 4,
+                      background:
+                        "linear-gradient(135deg,#ffffff,#eef2ff)",
+                      transition: ".4s",
+                      "&:hover": {
+                        transform: "translateY(-8px)",
+                        boxShadow:
+                          "0 30px 70px rgba(79,70,229,.35)"
+                      }
+                    }}
+                  >
+                    <Typography fontWeight={700}>{l.title}</Typography>
                     <Typography color="text.secondary">
                       {l.content}
                     </Typography>
@@ -229,11 +255,7 @@ export default function CourseDetails() {
             ]}
           />
 
-          <Paper sx={{
-            p: 5,
-            borderRadius: 5,
-            background: "linear-gradient(135deg,#eef2ff,#faf5ff)"
-          }}>
+          <Paper sx={premiumPaper}>
             <SectionTitle icon={<QuizIcon />} title="Assessment Quiz" />
             <Typography color="text.secondary" sx={{ mb: 3 }}>
               Complete quiz to unlock certificate
@@ -241,6 +263,7 @@ export default function CourseDetails() {
             <Button
               variant="contained"
               startIcon={<QuizIcon />}
+              sx={premiumBtn}
               onClick={() => {
                 setStep("quiz");
                 setTimeLeft(120);
@@ -254,8 +277,8 @@ export default function CourseDetails() {
 
       {/* ================= QUIZ ================= */}
       {step === "quiz" && (
-        <Paper sx={{ p: 5, borderRadius: 5 }}>
-          <Typography variant="h5" fontWeight="bold">
+        <Paper sx={premiumPaper}>
+          <Typography variant="h5" fontWeight={800}>
             Quiz <TimerIcon sx={{ ml: 1 }} /> {timeLeft}s
           </Typography>
 
@@ -280,7 +303,11 @@ export default function CourseDetails() {
             </Box>
           ))}
 
-          <Button sx={{ mt: 3 }} variant="contained" onClick={submitQuiz}>
+          <Button
+            sx={{ mt: 3 }}
+            variant="contained"
+            onClick={submitQuiz}
+          >
             Submit Quiz
           </Button>
         </Paper>
@@ -288,19 +315,23 @@ export default function CourseDetails() {
 
       {/* ================= RESULT ================= */}
       {step === "result" && (
-        <Paper sx={{ p: 5, borderRadius: 5, textAlign: "center" }}>
-          <Typography variant="h4">
+        <Paper sx={{ ...premiumPaper, textAlign: "center" }}>
+          <Typography variant="h4" fontWeight={900}>
             Score: {score}/{quiz.length}
           </Typography>
 
           {score >= 3 ? (
-            <Button sx={{ mt: 3 }} variant="contained"
+            <Button
+              sx={{ mt: 3 }}
+              variant="contained"
               onClick={() => setStep("certificate")}
             >
               Generate Certificate
             </Button>
           ) : (
-            <Button sx={{ mt: 3 }} variant="outlined"
+            <Button
+              sx={{ mt: 3 }}
+              variant="outlined"
               onClick={() => {
                 setAnswers({});
                 setStep("quiz");
@@ -315,9 +346,9 @@ export default function CourseDetails() {
 
       {/* ================= CERTIFICATE ================= */}
       {step === "certificate" && (
-        <Paper sx={{ p: 5, borderRadius: 5, textAlign: "center" }}>
-          <WorkspacePremiumIcon sx={{ fontSize: 60, color: "#22c55e" }} />
-          <Typography variant="h5" fontWeight="bold" sx={{ mt: 2 }}>
+        <Paper sx={{ ...premiumPaper, textAlign: "center" }}>
+          <WorkspacePremiumIcon sx={{ fontSize: 70, color: "#22c55e" }} />
+          <Typography variant="h5" fontWeight={900} sx={{ mt: 2 }}>
             Certificate Details
           </Typography>
 
@@ -331,22 +362,44 @@ export default function CourseDetails() {
           <Button
             variant="contained"
             color="success"
+            sx={premiumBtn}
             onClick={downloadCertificate}
           >
             Download Certificate (PDF)
           </Button>
         </Paper>
       )}
-
     </Container>
   );
 }
+
+/* ================= STYLES ================= */
+
+const premiumPaper = {
+  p: 5,
+  borderRadius: 6,
+  mb: 6,
+  background:
+    "linear-gradient(135deg,#ffffff,#eef2ff)",
+  boxShadow: "0 30px 80px rgba(79,70,229,.25)"
+};
+
+const premiumBtn = {
+  px: 4,
+  py: 1.2,
+  borderRadius: "999px",
+  fontWeight: 800,
+  background:
+    "linear-gradient(135deg,#4f46e5,#22c55e)",
+  boxShadow:
+    "0 18px 45px rgba(79,70,229,.5)"
+};
 
 /* ================= REUSABLE ================= */
 
 function Section({ icon, title, content, list }) {
   return (
-    <Paper sx={{ p: 5, borderRadius: 5, mb: 6 }}>
+    <Paper sx={premiumPaper}>
       <SectionTitle icon={icon} title={title} />
       {content && content.map((c, i) => (
         <Typography key={i} sx={{ mb: 2 }} color="text.secondary">
@@ -368,9 +421,23 @@ function Section({ icon, title, content, list }) {
 
 function SectionTitle({ icon, title }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
-      {icon}
-      <Typography variant="h5" fontWeight="bold">
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1.2, mb: 3 }}>
+      <Box
+        sx={{
+          width: 42,
+          height: 42,
+          borderRadius: "14px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background:
+            "linear-gradient(135deg,#4f46e5,#22c55e)",
+          color: "#fff"
+        }}
+      >
+        {icon}
+      </Box>
+      <Typography variant="h5" fontWeight={900}>
         {title}
       </Typography>
     </Box>

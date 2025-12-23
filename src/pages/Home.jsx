@@ -43,7 +43,7 @@ export default function Home() {
       {/* ================= HERO ================= */}
       <Box
         sx={{
-          minHeight: { xs: "75vh", md: "90vh" },
+          minHeight: { xs: "75vh", md: "92vh" },
           display: "flex",
           alignItems: "center",
           position: "relative",
@@ -54,41 +54,51 @@ export default function Home() {
           color: "#fff"
         }}
       >
-        {/* overlay */}
+        {/* DIAMOND OVERLAY */}
         <Box
           sx={{
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(135deg, rgba(15,23,42,0.94), rgba(79,70,229,0.88))"
+              "linear-gradient(135deg, rgba(2,6,23,0.95), rgba(79,70,229,0.9), rgba(34,197,94,0.75))"
           }}
         />
 
         <Container sx={{ position: "relative", zIndex: 1 }}>
-          <Box sx={{ maxWidth: 760 }}>
+          <Box sx={{ maxWidth: 780 }}>
             <Box
               sx={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 1,
-                px: 2,
+                px: 2.2,
                 py: 1,
                 mb: 3,
                 borderRadius: "999px",
-                background: "rgba(255,255,255,0.15)",
-                backdropFilter: "blur(10px)"
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.05))",
+                backdropFilter: "blur(14px)",
+                boxShadow:
+                  "0 0 25px rgba(124,58,237,.6)"
               }}
             >
               <SchoolIcon />
-              <Typography fontWeight={600}>
-                Premium Learning Platform
+              <Typography fontWeight={700}>
+                 Learning Platform
               </Typography>
             </Box>
 
             <Typography
               variant="h2"
               fontWeight={900}
-              sx={{ mb: 2, lineHeight: 1.15 }}
+              sx={{
+                mb: 2,
+                lineHeight: 1.12,
+                background:
+                  "linear-gradient(90deg,#a5b4fc,#22c55e,#5eead4)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
             >
               Learn Skills That <br />
               Shape Your Future
@@ -98,11 +108,12 @@ export default function Home() {
               sx={{
                 fontSize: "1.15rem",
                 opacity: 0.95,
-                maxWidth: 600
+                maxWidth: 620,
+                color: "#e0f2fe"
               }}
             >
               Real-world courses, hands-on practice and certification
-              designed for serious learners.
+              crafted for serious learners.
             </Typography>
           </Box>
         </Container>
@@ -112,26 +123,34 @@ export default function Home() {
       <Container
         sx={{
           position: "relative",
-          zIndex: 5,
-          transform: "translateY(-90px)"
+          zIndex: 6,
+          transform: "translateY(-95px)"
         }}
       >
         <Paper
           sx={{
             p: { xs: 3, md: 4 },
-            borderRadius: 5,
-            background: "rgba(255,255,255,0.85)",
-            backdropFilter: "blur(18px)",
+            borderRadius: 6,
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,.92), rgba(240,253,244,.85))",
+            backdropFilter: "blur(22px)",
             boxShadow:
-              "0 40px 80px rgba(79,70,229,0.35)",
-            animation: "fadeUp 0.8s ease"
+              "0 45px 110px rgba(79,70,229,.45)",
+            border: "1px solid rgba(124,58,237,.25)",
+            animation: "fadeUp 0.9s ease"
           }}
         >
           <Typography
             variant="h5"
-            fontWeight="bold"
+            fontWeight={900}
             align="center"
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              background:
+                "linear-gradient(90deg,#4f46e5,#22c55e)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}
           >
             Find Your Course
           </Typography>
@@ -143,28 +162,42 @@ export default function Home() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon color="primary" />
+                  <SearchIcon sx={{ color: "#4f46e5" }} />
                 </InputAdornment>
               )
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "18px"
+              }
             }}
           />
         </Paper>
       </Container>
 
       {/* ================= COURSES ================= */}
-      <Container sx={{ mt: -2, mb: 12 }}>
-        {/* title */}
-        <Box sx={{ mb: 6, display: "flex", alignItems: "center", gap: 2 }}>
+      <Container sx={{ mt: -2, mb: 14 }}>
+        {/* TITLE */}
+        <Box
+          sx={{
+            mb: 6,
+            display: "flex",
+            alignItems: "center",
+            gap: 2
+          }}
+        >
           <Box
             sx={{
-              width: 56,
-              height: 56,
-              borderRadius: "18px",
+              width: 58,
+              height: 58,
+              borderRadius: "20px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               background:
-                "linear-gradient(135deg,#4f46e5,#7c3aed)"
+                "linear-gradient(135deg,#7c3aed,#22c55e)",
+              boxShadow:
+                "0 0 30px rgba(124,58,237,.6)"
             }}
           >
             <MenuBookIcon sx={{ color: "#fff", fontSize: 30 }} />
@@ -176,20 +209,23 @@ export default function Home() {
               fontWeight={900}
               sx={{
                 background:
-                  "linear-gradient(90deg,#4f46e5,#22c55e)",
+                  "linear-gradient(90deg,#4f46e5,#22c55e,#5eead4)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent"
               }}
             >
               All Courses
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              sx={{ color: "#64748b" }}
+            >
               Learn • Practice • Get Certified
             </Typography>
           </Box>
         </Box>
 
-        {/* grid */}
+        {/* GRID */}
         <Grid container spacing={4}>
           {filteredCourses.map((course) => (
             <Grid
@@ -199,9 +235,9 @@ export default function Home() {
               md={4}
               key={course.id}
               sx={{
-                transition: "0.35s",
+                transition: "0.4s",
                 "&:hover": {
-                  transform: "translateY(-12px)"
+                  transform: "translateY(-14px)"
                 }
               }}
             >
@@ -212,7 +248,12 @@ export default function Home() {
 
         {filteredCourses.length === 0 && (
           <Box sx={{ textAlign: "center", mt: 10 }}>
-            <SearchIcon sx={{ fontSize: 64 }} />
+            <SearchIcon
+              sx={{
+                fontSize: 70,
+                color: "#94a3b8"
+              }}
+            />
             <Typography variant="h6">
               No courses found
             </Typography>
@@ -220,13 +261,13 @@ export default function Home() {
         )}
       </Container>
 
-      {/* animation */}
+      {/* ================= ANIMATION ================= */}
       <style>
         {`
           @keyframes fadeUp {
             from {
               opacity: 0;
-              transform: translateY(40px);
+              transform: translateY(45px);
             }
             to {
               opacity: 1;
