@@ -1,4 +1,24 @@
 /* ================= COMMON CONTENT GENERATORS ================= */
+import htmlCss from "../assets/courses/html-css.jpg";
+import js from "../assets/courses/javascript.jpg";
+import react from "../assets/courses/react.jpg";
+import mui from "../assets/courses/mui.jpg";
+import node from "../assets/courses/node.jpg";
+import mongo from "../assets/courses/mongodb.jpg";
+import mern from "../assets/courses/mern.jpg";
+import git from "../assets/courses/git.jpg";
+import ts from "../assets/courses/typescript.jpg";
+import redux from "../assets/courses/redux.jpg";
+import next from "../assets/courses/nextjs.jpg";
+import api from "../assets/courses/api.jpg";
+import express from "../assets/courses/express.jpg";
+import security from "../assets/courses/security.jpg";
+import uiux from "../assets/courses/uiux.jpg";
+import perf from "../assets/courses/performance.jpg";
+import testing from "../assets/courses/testing.jpg";
+import system from "../assets/courses/system-design.jpg";
+import deploy from "../assets/courses/deploy.jpg";
+import career from "../assets/courses/career.jpg";
 
 const generateCourseContent = (title) => [
   `${title} is a professionally designed course focused on real-world application.`,
