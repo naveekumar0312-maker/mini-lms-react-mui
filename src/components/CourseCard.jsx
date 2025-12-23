@@ -40,18 +40,13 @@ export default function CourseCard({ course }) {
       {/* ================= IMAGE ================= */}
       <Box sx={{ position: "relative" }}>
         <CardMedia
-          component="img"
-          height="190"
-          image={image}
-          alt={course.title}
-          sx={{
-            objectFit: "cover",
-            transition: "0.4s",
-            "&:hover": {
-              transform: "scale(1.05)"
-            }
-          }}
-        />
+  component="img"
+  height="180"
+  image={course.thumbnail}
+  alt={course.title}
+  sx={{ objectFit: "cover" }}
+/>
+
 
         {/* PREMIUM BADGE */}
         <Chip
