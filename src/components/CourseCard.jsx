@@ -19,7 +19,7 @@ export default function CourseCard({ course }) {
   const navigate = useNavigate();
 
   const image =
-    course.image || "src/courses/html-css.png"; // ✅ fallback safe
+    course.image || "/courses/html-css.png"; // ✅ fallback safe
 
   return (
     <Card
