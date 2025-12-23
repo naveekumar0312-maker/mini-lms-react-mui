@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { useEffect, useState } from "react";
-import CourseCard from "../components/CourseCard";
+import CourseCard from "../components/CourseCardV2";
 import coursesData from "../data/coursesData";
 
 export default function Home() {
