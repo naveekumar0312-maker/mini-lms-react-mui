@@ -32,7 +32,6 @@ const coursesData = [
   {
     id: 101,
     title: "HTML & CSS Mastery",
-    thumbnail: "/courses/html-css-v2.jpg",
     shortDesc: "Build real-world websites using HTML & CSS.",
     description: "Responsive and modern web design.",
     longContent: generateCourseContent("HTML & CSS Mastery"),
@@ -58,7 +57,6 @@ const coursesData = [
   {
     id: 102,
     title: "JavaScript Zero to Advanced",
-    thumbnail: "/courses/javascript-v2.jpg",
     shortDesc: "Master JavaScript from basics to advanced.",
     description: "ES6+, DOM, async programming.",
     longContent: generateCourseContent("JavaScript"),
@@ -83,7 +81,6 @@ const coursesData = [
   {
     id: 103,
     title: "React Pro Bootcamp",
-    thumbnail: "/courses/react-v2.jpg",
     shortDesc: "Build scalable React applications.",
     description: "Hooks, routing, architecture.",
     longContent: generateCourseContent("React"),
@@ -108,7 +105,6 @@ const coursesData = [
   {
     id: 104,
     title: "Material UI Complete Guide",
-    thumbnail: "/courses/mui-v2.jpg",
     shortDesc: "Design premium UI with MUI.",
     description: "Modern UI components.",
     longContent: generateCourseContent("Material UI"),
@@ -131,7 +127,6 @@ const coursesData = [
   {
     id: 105,
     title: "Node.js Backend Development",
-    thumbnail: "/courses/node-v2.jpg",
     shortDesc: "Backend development with Node.js.",
     description: "APIs and server logic.",
     longContent: generateCourseContent("Node.js"),
@@ -154,7 +149,6 @@ const coursesData = [
   {
     id: 106,
     title: "MongoDB & NoSQL",
-    thumbnail: "/courses/mongodb-v2.jpg",
     shortDesc: "NoSQL database mastery.",
     description: "CRUD and schema design.",
     longContent: generateCourseContent("MongoDB"),
@@ -178,7 +172,6 @@ const coursesData = [
   {
     id: 107,
     title: "MERN Stack Development",
-    thumbnail: "/courses/mern-v2.jpg",
     shortDesc: "Full stack MERN apps.",
     description: "Frontend + Backend integration.",
     longContent: generateCourseContent("MERN Stack"),
@@ -197,7 +190,6 @@ const coursesData = [
   {
     id: 108,
     title: "Git & GitHub Essentials",
-    thumbnail: "/courses/git-v2.jpg",
     shortDesc: "Version control mastery.",
     description: "Collaboration tools.",
     longContent: generateCourseContent("Git & GitHub"),
@@ -215,7 +207,6 @@ const coursesData = [
   {
     id: 109,
     title: "TypeScript for React",
-    thumbnail: "/courses/typescript-v2.jpg",
     shortDesc: "Type-safe React apps.",
     description: "TypeScript integration.",
     longContent: generateCourseContent("TypeScript"),
@@ -232,7 +223,6 @@ const coursesData = [
   {
     id: 110,
     title: "Redux Toolkit Mastery",
-    thumbnail: "/courses/redux-v2.jpg",
     shortDesc: "Global state management.",
     description: "Redux Toolkit patterns.",
     longContent: generateCourseContent("Redux Toolkit"),
@@ -249,7 +239,6 @@ const coursesData = [
   {
     id: 111,
     title: "Next.js Fundamentals",
-    thumbnail:"/courses/nextjs-v2.jpg",
     shortDesc: "Production React apps.",
     description: "SSR & routing.",
     longContent: generateCourseContent("Next.js"),
@@ -266,7 +255,6 @@ const coursesData = [
   {
     id: 112,
     title: "REST API Design",
-    thumbnail: "/courses/api-v2.jpg",
     shortDesc: "Scalable APIs.",
     description: "REST principles.",
     longContent: generateCourseContent("REST API"),
@@ -283,7 +271,6 @@ const coursesData = [
   {
     id: 113,
     title: "Express.js Deep Dive",
-    thumbnail: "/courses/express-v2.jpg",
     shortDesc: "Backend framework.",
     description: "Middleware & routing.",
     longContent: generateCourseContent("Express.js"),
@@ -300,7 +287,6 @@ const coursesData = [
   {
     id: 114,
     title: "Authentication & Security",
-    thumbnail: "/courses/security-v2.jpg",
     shortDesc: "Secure apps.",
     description: "JWT & roles.",
     longContent: generateCourseContent("Security"),
@@ -317,7 +303,6 @@ const coursesData = [
   {
     id: 115,
     title: "UI/UX Design Basics",
-    thumbnail: "/courses/uiux-v2.jpg",
     shortDesc: "User experience design.",
     description: "Design principles.",
     longContent: generateCourseContent("UI/UX"),
@@ -334,7 +319,6 @@ const coursesData = [
   {
     id: 116,
     title: "Frontend Performance",
-    thumbnail: "/courses/performance-v2.jpg",
     shortDesc: "Speed optimization.",
     description: "Performance best practices.",
     longContent: generateCourseContent("Performance"),
@@ -351,7 +335,6 @@ const coursesData = [
   {
     id: 117,
     title: "Testing React Apps",
-    thumbnail: "/courses/testing-v2.jpg",
     shortDesc: "Reliable tests.",
     description: "Jest & RTL.",
     longContent: generateCourseContent("Testing"),
@@ -368,7 +351,6 @@ const coursesData = [
   {
     id: 118,
     title: "System Design Basics",
-    thumbnail:"/courses/system-design-v2.jpg",
     shortDesc: "Scalable systems.",
     description: "Architecture basics.",
     longContent: generateCourseContent("System Design"),
@@ -385,7 +367,6 @@ const coursesData = [
   {
     id: 119,
     title: "Web Deployment",
-    thumbnail:"/courses/deploy-v2.jpg",
     shortDesc: "Deploy apps.",
     description: "Production hosting.",
     longContent: generateCourseContent("Deployment"),
@@ -402,7 +383,6 @@ const coursesData = [
   {
     id: 120,
     title: "Developer Career Roadmap",
-    thumbnail: "/courses/career-v2.jpg",
     shortDesc: "Career growth.",
     description: "Interview & skills.",
     longContent: generateCourseContent("Career"),

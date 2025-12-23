@@ -1,21 +1,23 @@
 import {
   Card,
   CardContent,
-  CardMedia,
   Typography,
   Button,
   Stack,
   Box,
-  Chip
+  Chip,
+  Divider
 } from "@mui/material";
+
 import { useNavigate } from "react-router-dom";
 
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import TimelineIcon from "@mui/icons-material/Timeline";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
-export default function CourseCardV2({ course }) {
+export default function CourseCard({ course }) {
   const navigate = useNavigate();
 
   return (
@@ -25,52 +27,49 @@ export default function CourseCardV2({ course }) {
         display: "flex",
         flexDirection: "column",
         borderRadius: "20px",
-        overflow: "hidden",
         background:
-          "linear-gradient(180deg, #ffffff 0%, #f9fafb 100%)",
-        boxShadow: "0 18px 45px rgba(0,0,0,0.12)",
-        transition: "0.35s ease",
+          "linear-gradient(180deg,#ffffff,#f9fafb)",
+        boxShadow: "0 12px 35px rgba(0,0,0,0.12)",
+        transition: "0.45s ease",
+        position: "relative",
+        overflow: "hidden",
         "&:hover": {
           transform: "translateY(-10px)",
-          boxShadow: "0 35px 80px rgba(79,70,229,0.35)"
+          boxShadow:
+            "0 30px 70px rgba(79,70,229,0.35)"
         }
       }}
     >
-      {/* ================= IMAGE ================= */}
-      <Box sx={{ position: "relative" }}>
-        <CardMedia
-          component="img"
-          height="190"
-          image={course.thumbnail}   // 🔥 only this
-          alt={course.title}
-          sx={{
-            objectFit: "cover",
-            filter: "brightness(0.92)"
-          }}
-        />
+      {/* ===== TOP PREMIUM STRIP ===== */}
+      <Box
+        sx={{
+          height: 6,
+          background:
+            "linear-gradient(90deg,#4f46e5,#22c55e)"
+        }}
+      />
 
-        {/* Premium badge */}
-        <Chip
-          icon={<WorkspacePremiumIcon sx={{ color: "#facc15" }} />}
-          label="Premium"
-          size="small"
-          sx={{
-            position: "absolute",
-            top: 14,
-            left: 14,
-            bgcolor: "rgba(15,23,42,0.85)",
-            color: "#fff",
-            fontWeight: "bold"
-          }}
-        />
-      </Box>
+      {/* ===== PREMIUM BADGE ===== */}
+      <Chip
+        icon={<WorkspacePremiumIcon sx={{ color: "#facc15" }} />}
+        label="Premium Course"
+        size="small"
+        sx={{
+          position: "absolute",
+          top: 16,
+          right: 16,
+          bgcolor: "#0f172a",
+          color: "#fff",
+          fontWeight: "bold"
+        }}
+      />
 
-      {/* ================= CONTENT ================= */}
-      <CardContent sx={{ flexGrow: 1, px: 2.5, pt: 2.5 }}>
+      {/* ===== CONTENT ===== */}
+      <CardContent sx={{ flexGrow: 1, pt: 4 }}>
         <Typography
           variant="h6"
-          fontWeight="bold"
-          sx={{ lineHeight: 1.3 }}
+          fontWeight={800}
+          sx={{ mb: 1, lineHeight: 1.3 }}
         >
           {course.title}
         </Typography>
@@ -78,22 +77,27 @@ export default function CourseCardV2({ course }) {
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ mt: 1.2 }}
+          sx={{ mb: 3 }}
         >
           {course.shortDesc}
         </Typography>
 
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ mt: 2, flexWrap: "wrap" }}
-        >
+        <Divider sx={{ mb: 2 }} />
+
+        {/* ===== META INFO ===== */}
+        <Stack direction="row" spacing={1} flexWrap="wrap">
           <Chip
             icon={<MenuBookIcon />}
-            label={`${course.lessons.length}+ Lessons`}
+            label={`${course.lessons?.length || 10}+ Lessons`}
             size="small"
           />
           <Chip
+            icon={<TimelineIcon />}
+            label="Beginner → Advanced"
+            size="small"
+          />
+          <Chip
+            icon={<VerifiedIcon />}
             label="Certificate"
             color="success"
             size="small"
@@ -101,16 +105,14 @@ export default function CourseCardV2({ course }) {
         </Stack>
       </CardContent>
 
-      {/* ================= ACTION ================= */}
-      <Box sx={{ p: 2.5 }}>
+      {/* ===== ACTION ===== */}
+      <Box sx={{ p: 2 }}>
         <Button
           fullWidth
           size="large"
-          endIcon={<ArrowForwardIcon />}
-          startIcon={<PlayCircleFilledIcon />}
+          startIcon={<PlayCircleFilledWhiteIcon />}
           variant="contained"
           sx={{
-            py: 1.3,
             borderRadius: "14px",
             fontWeight: "bold",
             textTransform: "none",
